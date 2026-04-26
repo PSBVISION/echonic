@@ -17,7 +17,17 @@ export default clerkMiddleware(async (auth, req) => {
     await auth.protect();
   }
 
-  //Allow org Selection page 
+  //Allow org Selection page
+  if(isOrgSelectionRoute(req)){
+    return NextResponse.next();
+  }
+  
+  if (userId && orgId) {
+    const orgSelection = new URL("/org-selection", req.url);
+    return NextResponse.redirect(orgSelection);
+  }
+
+  return NextResponse.next(); 
 });
 
 export const config = {
