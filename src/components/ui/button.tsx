@@ -38,6 +38,12 @@ const buttonVariants = cva(
   }
 )
 
+/**
+ * Renders a styled button or child element.
+ *
+ * @param asChild - Renders the button styles on the child element when `true`.
+ * @returns The rendered button element.
+ */
 function Button({
   className,
   variant = "default",
