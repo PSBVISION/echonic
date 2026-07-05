@@ -29,10 +29,22 @@ export function SettingsPanelSettings() {
                 <Field>
                   <FieldLabel>{slider.label}</FieldLabel>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">{slider.leftLabel}</span>
-                    <span className="text-xs text-muted-foreground">{slider.rightLabel}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {slider.leftLabel}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {slider.rightLabel}
+                    </span>
                   </div>
-                  <Slider value={[field.state.value]}/>
+                  <Slider
+                    value={[field.state.value]}
+                    onValueChange={(value) => field.handleChange(value[0])}
+                    min={slider.min}
+                    max={slider.max}
+                    step={slider.step}
+                    disabled={isSubmitting}
+                    className="**:data-[slot=slider-thumb]:size-3 **:data-[slot=slider-thumb]:bg-foreground **:data-[slot=slider-track]:h-1"
+                  />
                 </Field>
               )}
             </form.Field>
