@@ -3,6 +3,7 @@ import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
+import { TRPCReactProvider } from "@/trpc/client";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,10 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: {default:"Echonic",
-    template: "%s | Echonic"
-  },
-  description: "Echonic is a text-to-speech web application that allows users to convert written text into natural-sounding speech. With a user-friendly interface and advanced speech synthesis technology, Echonic provides an accessible and efficient solution for individuals seeking to listen to written content. Whether for personal use, accessibility needs, or content creation, Echonic offers a seamless experience for transforming text into audio.",
+  title: { default: "Echonic", template: "%s | Echonic" },
+  description:
+    "Echonic is a text-to-speech web application that allows users to convert written text into natural-sounding speech. With a user-friendly interface and advanced speech synthesis technology, Echonic provides an accessible and efficient solution for individuals seeking to listen to written content. Whether for personal use, accessibility needs, or content creation, Echonic offers a seamless experience for transforming text into audio.",
 };
 
 export default function RootLayout({
@@ -28,15 +28,18 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html
-      lang="en"
-      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning>
-      <body className="min-h-full flex flex-col">
-        {children}
-        <Toaster />
-      </body>
-    </html>
-      </ClerkProvider>
+      <TRPCReactProvider>
+        <html
+          lang="en"
+          className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
+          suppressHydrationWarning
+        >
+          <body className="min-h-full flex flex-col">
+            {children}
+            <Toaster />
+          </body>
+        </html>
+      </TRPCReactProvider>
+    </ClerkProvider>
   );
 }
