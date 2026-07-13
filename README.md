@@ -39,7 +39,8 @@ building-your-application/deploying) for more details.
 
 
 
-
+# postgresql neondb and 
+## used clodflare r2 for audio storage 
 
 
 
